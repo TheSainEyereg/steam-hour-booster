@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "nexe": "^4.0.0-beta.19"
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.10",
+    "steam-user": "^4.20.2"
+  }
+}
