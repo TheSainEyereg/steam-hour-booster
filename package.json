@@ -4,6 +4,6 @@
   },
   "dependencies": {
     "readline-sync": "^1.4.10",
-    "steam-user": "^4.20.2"
+    "steam-user": "^4.27.1"
   }
 }
