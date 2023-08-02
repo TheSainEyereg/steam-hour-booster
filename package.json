@@ -8,6 +8,9 @@
 		"dev": "nodemon --signal SIGINT src/app",
 		"lint": "eslint src/**/*.ts"
 	},
+	"repository": "https://github.com/TheSainEyereg/steam-hours-bot.git",
+	"author": "Olejka",
+	"license": "MIT",
 	"dependencies": {
 		"better-sqlite3": "^8.5.0",
 		"prompts": "^2.4.2",
