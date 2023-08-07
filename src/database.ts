@@ -27,10 +27,12 @@ export const getAccountAppIDs = (steamID: string) => {
 	return appIDsCache[steamID];
 };
 export const addAccountAppIDs = (steamID: string, appIDs: string[]) => {
+	if (!appIDsCache[steamID]) getAccountAppIDs(steamID);
 	appIDsCache[steamID].push(...appIDs);
 	db.prepare("UPDATE \"accounts\" SET \"appIDs\" = ? WHERE \"steamID\" = ?").run(appIDs.join(";"), steamID);
 };
 export const deleteAccountAppIDs = (steamID: string, appIDs: string[]) => {
+	if (!appIDsCache[steamID]) getAccountAppIDs(steamID);
 	appIDs.forEach(appID => appIDsCache[steamID].splice(appIDsCache[steamID].indexOf(appID), 1));
 	db.prepare("UPDATE \"accounts\" SET \"appIDs\" = ? WHERE \"steamID\" = ?").run(appIDs.join(";"), steamID);
 };

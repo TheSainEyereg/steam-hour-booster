@@ -155,14 +155,16 @@ function prepareAccountList(usersMap: Map<string, MySteamUser>) {
 	}));
 }
 
-async function deleteAccount(usersMap: Map<string, MySteamUser>, id: string) {
+function deleteAccount(usersMap: Map<string, MySteamUser>, id: string) {
+	deleteDBAccount(id);
 	const user = usersMap.get(id)!;
-	if (user.isConnected()) await new Promise<void>(resolve => {
+	usersMap.delete(id);
+
+	// if you want to wait until user is disconnected
+	if (user.isConnected()) return new Promise<void>(resolve => {
 		user.logOff();
 		user.once("disconnected", () => resolve());
 	});
-	deleteDBAccount(id);
-	usersMap.delete(id);
 }
 
 async function deleteAccounts(usersMap: Map<string, MySteamUser>) {
