@@ -218,7 +218,7 @@ async function editAccounts(usersMap: Map<string, MySteamUser>) {
 async function showMenu(usersMap: Map<string, MySteamUser>) {
 	const options: { title: string, disabled?: boolean, callback: (usersMap: Map<string, MySteamUser>) => Promise<void> | void }[] = [
 		{ title: "Exit", callback: () => process.exit(0) },
-		{ title: "Edit account", callback: editAccounts },
+		{ title: "Edit account", callback: editAccounts, disabled: !usersMap.size },
 		{ title: "Add multiple accounts", callback: addAccounts },
 		{ title: "Delete multiple accounts", callback: deleteAccounts, disabled: !usersMap.size },
 	].filter(({ disabled }) => !disabled);

@@ -40,7 +40,7 @@ const users = new Map<string, MySteamUser>();
 function handleInterrupt(code: number) {
 	process.removeAllListeners();
 
-	console.log(`Bot exiting with code: ${code}`);
+	console.log(`Exiting with code: ${code}`);
 
 	process.exit(code);
 }
