@@ -1,9 +1,32 @@
 {
-  "devDependencies": {
-    "nexe": "^4.0.0-beta.19"
-  },
-  "dependencies": {
-    "readline-sync": "^1.4.10",
-    "steam-user": "^4.20.2"
-  }
+	"name": "steam-hours-bot",
+	"version": "2.0.0",
+	"description": "Steam hours booster",
+	"scripts": {
+		"build": "tsc",
+		"start": "node dist/app",
+		"dev": "nodemon --signal SIGINT src/app",
+		"lint": "eslint src/**/*.ts"
+	},
+	"repository": "https://github.com/TheSainEyereg/steam-hours-bot.git",
+	"author": "Olejka",
+	"license": "MIT",
+	"dependencies": {
+		"better-sqlite3": "^8.5.0",
+		"prompts": "^2.4.2",
+		"steam-session": "^1.2.5",
+		"steam-user": "^4.29.1"
+	},
+	"devDependencies": {
+		"@types/better-sqlite3": "^7.6.4",
+		"@types/node": "^20.4.6",
+		"@types/prompts": "^2.4.4",
+		"@types/steam-user": "^4.26.4",
+		"@typescript-eslint/eslint-plugin": "^6.2.1",
+		"@typescript-eslint/parser": "^6.2.1",
+		"eslint": "^8.46.0",
+		"nodemon": "^3.0.1",
+		"ts-node": "^10.9.1",
+		"typescript": "^5.1.6"
+	}
 }
