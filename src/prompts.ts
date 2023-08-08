@@ -1,7 +1,7 @@
 import prompts from "prompts";
 import { EAuthSessionGuardType, EAuthTokenPlatformType, EResult, LoginSession } from "steam-session";
 import MySteamUser from "./Client";
-import { addAccountAppIDs, deleteAccount as deleteDBAccount, deleteAccountAppIDs, getAccountAppIDs, getAllAccounts, saveNewAccount } from "./database";
+import { addAccountAppIDs, deleteAccount as deleteDBAccount, deleteAccountAppIDs, getAccountAppIDs, getAllAccounts, saveNewAccount, updateAccountRrefreshToken } from "./database";
 
 export async function addAccounts(usersMap: Map<string, MySteamUser>) {
 	do {
@@ -188,7 +188,15 @@ async function editAccount(user: MySteamUser) {
 	const options: { title: string, disabled?: boolean, callback: (user: MySteamUser) => Promise<void> | void }[] = [
 		{ title: "LogOff", callback: user.logOff, disabled: !user.isConnected() },
 		{ title: "ReLogIn", callback: user.relogOn, disabled: user.isConnected() },
-		{ title: "Authenticate (update token)", callback: authAccount },
+		{ title: "Authenticate (update token)", callback: async () => {
+			try {
+				await authAccount(user);
+			} catch (e) {
+				console.log(`Failed to authenticate account! (${e})`);
+				return;
+			}
+			updateAccountRrefreshToken(user.steamID!.toString(), user.getRefreshToken()!);
+		} },
 		{ title: "Add app IDs", callback: addAppIDs, disabled: !user.isConnected() },
 		{ title: "Delete app IDs", callback: deleteAppIDs, disabled: !appIDs.length },
 	].filter(({ disabled }) => !disabled);
