@@ -2,7 +2,7 @@ import SteamUser from "steam-user";
 
 interface LogOnDetailsRefresh {
     accountName: string; // Yep this is illegal, but in overridden logOn we remove it 
-    refreshToken: string;
+	refreshToken: string;
     machineName?: string;
 }
 
@@ -23,8 +23,7 @@ export default class MySteamUser extends SteamUser {
 		this.on("error", () => this.connected = false);
 	}
 
-	logOn(details: LogOnDetailsRefresh): void {
-		this.accountName = details.accountName;
+	logOn = (details: LogOnDetailsRefresh) => {
 		this.refreshToken = details.refreshToken;
 		
 		// Ugly TS hack
@@ -34,12 +33,19 @@ export default class MySteamUser extends SteamUser {
 			
 		this.on("error", (err) => console.log(`Error at "${this.accountName}": ${err}`));
 		super.logOn(details);
-	}
+	};
 
-	relogOn() {
+	relogOn = () => {
 		const { refreshToken } = this;
 		if (!refreshToken) throw new Error("No refreshToken");
 
 		super.logOn({ refreshToken });
-	}
+	};
+
+	logOff = () => {
+		return new Promise<void>(resolve => {
+			this.once("disconnected", () => resolve());
+			super.logOff();
+		});
+	};
 }

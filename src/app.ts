@@ -37,15 +37,15 @@ const users = new Map<string, MySteamUser>();
 	startListeningForKeypress(users);
 })();
 
-function handleInterrupt(code: number) {
-	process.removeAllListeners();
+// function handleInterrupt(code: number) {
+// 	process.removeAllListeners();
 
-	console.log(`Exiting with code: ${code}`);
+// 	console.log(`Exiting with code: ${code}`);
 
-	process.exit(code);
-}
+// 	process.exit(code);
+// }
 
-process.once("exit", handleInterrupt);
-process.once("SIGINT", handleInterrupt);
-process.once("SIGQUIT", handleInterrupt);
-process.once("SIGTERM", handleInterrupt);
+// process.once("exit", handleInterrupt);
+// process.once("SIGINT", handleInterrupt);
+// process.once("SIGQUIT", handleInterrupt);
+// process.once("SIGTERM", handleInterrupt);

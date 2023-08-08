@@ -66,6 +66,8 @@ async function authAccount(user: MySteamUser) {
 
 		if ([EAuthSessionGuardType.EmailConfirmation, EAuthSessionGuardType.DeviceConfirmation].includes(action.type)) {
 			console.log(action.type === EAuthSessionGuardType.DeviceConfirmation ? "Confirm this login in Steam mobile app" : "Confirm this login by email");
+		
+			// TODO: Handle ctrl+c like in other prompts
 		} else {
 			console.log(action.type === EAuthSessionGuardType.DeviceCode ? "Code from your Guard Mobile Authenticator is required" : `A login code has been sent to your email address at ${action.detail}`);
 			// eslint-disable-next-line no-constant-condition
@@ -184,7 +186,8 @@ async function editAccount(user: MySteamUser) {
 	const appIDs = user.isConnected() ? getAccountAppIDs(user.steamID!.toString()) : [];
 
 	const options: { title: string, disabled?: boolean, callback: (user: MySteamUser) => Promise<void> | void }[] = [
-		{ title: "ReLogIn", callback: () => user.relogOn(), disabled: user.isConnected() },
+		{ title: "LogOff", callback: user.logOff, disabled: !user.isConnected() },
+		{ title: "ReLogIn", callback: user.relogOn, disabled: user.isConnected() },
 		{ title: "Authenticate (update token)", callback: authAccount },
 		{ title: "Add app IDs", callback: addAppIDs, disabled: !user.isConnected() },
 		{ title: "Delete app IDs", callback: deleteAppIDs, disabled: !appIDs.length },
