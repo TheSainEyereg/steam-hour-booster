@@ -42,8 +42,8 @@ async function authAccount(user: MySteamUser) {
 	})).value;
 
 	if (!accountName) throw new Error("Aborted!");
-
-	if (allNames.includes(accountName)) throw new Error(`Account with name ${accountName} already exists!`);
+	
+	if (allNames.includes(accountName) && user.getAccountName() !== accountName) throw new Error(`Account with name ${accountName} already exists!`);
 
 	const password = (await prompts({
 		type: "password",

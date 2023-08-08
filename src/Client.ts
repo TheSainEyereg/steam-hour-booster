@@ -24,6 +24,7 @@ export default class MySteamUser extends SteamUser {
 	}
 
 	logOn = (details: LogOnDetailsRefresh) => {
+		this.accountName = details.accountName;
 		this.refreshToken = details.refreshToken;
 		
 		// Ugly TS hack
