@@ -26,7 +26,7 @@ const users = new Map<string, MySteamUser>();
 
 			const { accountName, refreshToken } = account;
 
-			user.logOn({ refreshToken, accountName });
+			user.logIn({ refreshToken, accountName });
 
 			users.set(account.steamID, user);
 		}

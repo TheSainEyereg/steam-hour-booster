@@ -100,7 +100,7 @@ async function authAccount(user: MySteamUser) {
 		session.once("authenticated", () => {
 			const { refreshToken } = session;
 
-			user.logOn({ refreshToken, accountName });
+			user.logIn({ refreshToken, accountName });
 
 			user.once("error", reject);
 			user.once("loggedOn", () => {
@@ -187,7 +187,7 @@ async function editAccount(user: MySteamUser) {
 
 	const options: { title: string, disabled?: boolean, callback: (user: MySteamUser) => Promise<void> | void }[] = [
 		{ title: "LogOff", callback: user.logOff, disabled: !user.isConnected() },
-		{ title: "ReLogIn", callback: user.relogOn, disabled: user.isConnected() },
+		{ title: "ReLogIn", callback: user.relogIn, disabled: user.isConnected() },
 		{ title: "Authenticate (update token)", callback: async () => {
 			try {
 				await authAccount(user);
