@@ -12,7 +12,7 @@
 	"author": "Olejka",
 	"license": "MIT",
 	"dependencies": {
-		"better-sqlite3": "^8.5.0",
+		"better-sqlite3": "^8.5.1",
 		"prompts": "^2.4.2",
 		"steam-session": "^1.2.5",
 		"steam-user": "^4.29.1"
