@@ -15,3 +15,12 @@ yarn
 yarn build
 ```
 3. Run `npm start` and on the first run you will be prompted to add new accounts, otherwise it will automatically log you in to those already added.
+
+### Screenshots
+
+**Main menu**
+![Main menu](.github/screenshots/main_menu.png)
+**Edit account**
+![Edit account](.github/screenshots/edit_dialog.png)
+**Add account**
+![Add account](.github/screenshots/add_dialog.png)
