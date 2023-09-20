@@ -18,9 +18,9 @@ yarn build
 
 ### Screenshots
 
-**Main menu**
-![Main menu](.github/screenshots/main_menu.png)
-**Edit account**
-![Edit account](.github/screenshots/edit_dialog.png)
-**Add account**
-![Add account](.github/screenshots/add_dialog.png)
+**Main menu:**  
+![Main menu](.github/screenshots/main_menu.png)  
+**Edit account:**  
+![Edit account](.github/screenshots/edit_dialog.png)  
+**Add account:**  
+![Add account](.github/screenshots/add_dialog.png)  
