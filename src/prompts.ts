@@ -2,6 +2,7 @@ import prompts from "prompts";
 import { EAuthSessionGuardType, EAuthTokenPlatformType, EResult, LoginSession } from "steam-session";
 import MySteamUser from "./Client";
 import { addAccountAppIDs, deleteAccount as deleteDBAccount, deleteAccountAppIDs, getAccountAppIDs, getAllAccounts, saveNewAccount, updateAccountRrefreshToken } from "./database";
+import { EPersonaState } from "steam-user";
 
 export async function addAccounts(usersMap: Map<string, MySteamUser>) {
 	do {
@@ -114,6 +115,8 @@ async function authAccount(user: MySteamUser) {
 		session.once("timeout", reject);
 		session.once("error", reject);
 	});
+
+	user.setPersona(EPersonaState.Online);
 }
 
 async function addAppIDs(user: MySteamUser) {
