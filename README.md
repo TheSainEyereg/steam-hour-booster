@@ -14,7 +14,7 @@ cd steam-hour-booster
 yarn
 yarn build
 ```
-3. Run `npm start` and on the first run you will be prompted to add new accounts, otherwise it will automatically log you in to those already added.
+3. Run `yarn start` and on the first run you will be prompted to add new accounts, otherwise it will automatically log you in to those already added.
 
 ### Screenshots
 
